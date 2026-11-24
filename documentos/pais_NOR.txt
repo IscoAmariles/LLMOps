@@ -1,0 +1,5 @@
+Ficha de país: Noruega (Norway), código NOR.
+Capital: Oslo. Región: Europe & Central Asia (Europa y Asia Central). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 220. Energía renovable: 200. Participación renovable: 90.9 % (Renewable_Share = 0.909).
+Estado ambiental: Green (verde: participación renovable ≥ 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

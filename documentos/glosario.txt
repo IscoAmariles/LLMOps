@@ -1,0 +1,32 @@
+Glosario: Country.
+Country: nombre del país en inglés, tal como lo da el World Bank (por ejemplo Egypt, Arab Rep.). Los nombres en español están en cada ficha.
+
+Glosario: Country_Code.
+Country_Code: código ISO3 del país (por ejemplo COL, NOR). Es la clave única del dataset.
+
+Glosario: Capital_City.
+Capital_City: capital del país, en inglés y sin tildes.
+
+Glosario: Region.
+Region: región del World Bank a la que pertenece el país.
+
+Glosario: Income_Level.
+Income_Level: nivel de ingreso del World Bank: High income (alto), Upper middle income (mediano alto), Lower middle income (mediano bajo).
+
+Glosario: Longitude y Latitude.
+Longitude y Latitude: coordenadas de la capital.
+
+Glosario: Energy_Consumption.
+Energy_Consumption: consumo de energía del país. Sin unidad ni año documentados.
+
+Glosario: Renewable_Energy.
+Renewable_Energy: energía renovable del país, presumiblemente en la misma unidad que el consumo (no documentado).
+
+Glosario: Energy_per_Renewable_Unit.
+Energy_per_Renewable_Unit: Energy_Consumption / (Renewable_Energy + 1). No mide emisiones.
+
+Glosario: Renewable_Share.
+Renewable_Share: participación renovable: Renewable_Energy / Energy_Consumption, entre 0 y 1.
+
+Glosario: Environmental_Status.
+Environmental_Status: estado ambiental según la participación renovable: Green (verde), Moderate (moderado), Critical (crítico) o Unknown (desconocido).

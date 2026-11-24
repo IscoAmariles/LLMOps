@@ -1,0 +1,11 @@
+Limitaciones: tiempo y unidades.
+El dataset no tiene año ni evolución en el tiempo, y no documenta la unidad de medida de la energía. No se pueden responder preguntas sobre tendencias, años concretos ni conversiones de unidades.
+
+Limitaciones: emisiones y tipos de energía.
+El dataset no contiene emisiones de CO2 ni desglose por tipo de energía (solar, eólica, hidráulica, etc.). Energy_per_Renewable_Unit no es una medida de emisiones.
+
+Limitaciones: cobertura.
+Solo hay 20 países: Alemania, Argentina, Australia, Brasil, Canadá, Chile, China, Colombia, Egipto, España, Estados Unidos, Francia, India, Japón, Kenia, México, Noruega, Perú, Sudáfrica y Uruguay. Cualquier otro país no está en el dataset.
+
+Limitaciones: origen.
+Son datos de laboratorio generados por un ETL de práctica, no estadísticas oficiales. Los umbrales de estado ambiental son una regla del laboratorio.

@@ -1,0 +1,34 @@
+Resumen de la región East Asia & Pacific (Asia Oriental y el Pacífico).
+Cantidad de países: 3. Países: Australia (AUS), China (CHN), Japón (JPN).
+Participación renovable promedio (promedio simple de los países): 10.3 %.
+Países por estado: Green (verde): 0, Moderate (moderado): 2, Critical (crítico): 1.
+
+Resumen de la región Europe & Central Asia (Europa y Asia Central).
+Cantidad de países: 4. Países: Alemania (DEU), España (ESP), Francia (FRA), Noruega (NOR).
+Participación renovable promedio (promedio simple de los países): 35.4 %.
+Países por estado: Green (verde): 2, Moderate (moderado): 1, Critical (crítico): 1.
+
+Resumen de la región Latin America & Caribbean (América Latina y el Caribe).
+Cantidad de países: 7. Países: Argentina (ARG), Brasil (BRA), Chile (CHL), Colombia (COL), México (MEX), Perú (PER), Uruguay (URY).
+Participación renovable promedio (promedio simple de los países): 26.3 %.
+Países por estado: Green (verde): 3, Moderate (moderado): 1, Critical (crítico): 3.
+
+Resumen de la región Middle East, North Africa, Afghanistan & Pakistan (Oriente Medio, Norte de África, Afganistán y Pakistán).
+Cantidad de países: 1. Países: Egipto (EGY).
+Participación renovable promedio (promedio simple de los países): 2.9 %.
+Países por estado: Green (verde): 0, Moderate (moderado): 0, Critical (crítico): 1.
+
+Resumen de la región North America (América del Norte).
+Cantidad de países: 2. Países: Canadá (CAN), Estados Unidos (USA).
+Participación renovable promedio (promedio simple de los países): 13.3 %.
+Países por estado: Green (verde): 0, Moderate (moderado): 1, Critical (crítico): 1.
+
+Resumen de la región South Asia (Asia meridional).
+Cantidad de países: 1. Países: India (IND).
+Participación renovable promedio (promedio simple de los países): 2.0 %.
+Países por estado: Green (verde): 0, Moderate (moderado): 0, Critical (crítico): 1.
+
+Resumen de la región Sub-Saharan Africa (África subsahariana).
+Cantidad de países: 2. Países: Kenia (KEN), Sudáfrica (ZAF).
+Participación renovable promedio (promedio simple de los países): 37.5 %.
+Países por estado: Green (verde): 1, Moderate (moderado): 0, Critical (crítico): 1.

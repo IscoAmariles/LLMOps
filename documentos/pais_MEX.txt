@@ -1,0 +1,5 @@
+Ficha de país: México (Mexico), código MEX. También conocido como: Méjico.
+Capital: Mexico City. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 420. Energía renovable: 30. Participación renovable: 7.1 % (Renewable_Share = 0.071).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

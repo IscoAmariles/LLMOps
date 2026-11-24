@@ -1,0 +1,5 @@
+Ficha de país: Perú (Peru), código PER.
+Capital: Lima. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 120. Energía renovable: 44. Participación renovable: 36.7 % (Renewable_Share = 0.367).
+Estado ambiental: Green (verde: participación renovable ≥ 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

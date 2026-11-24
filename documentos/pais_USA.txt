@@ -1,0 +1,5 @@
+Ficha de país: Estados Unidos (United States), código USA. También conocido como: EE. UU., EEUU, EE.UU., Estados Unidos de América.
+Capital: Washington D.C. Región: North America. Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 1200. Energía renovable: 20. Participación renovable: 1.7 % (Renewable_Share = 0.017).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

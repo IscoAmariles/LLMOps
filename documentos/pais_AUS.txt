@@ -1,0 +1,5 @@
+Ficha de país: Australia, código AUS.
+Capital: Canberra. Región: East Asia & Pacific (Asia Oriental y el Pacífico). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 400. Energía renovable: 55. Participación renovable: 13.8 % (Renewable_Share = 0.138).
+Estado ambiental: Moderate (moderado: participación renovable ≥ 10 % y < 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

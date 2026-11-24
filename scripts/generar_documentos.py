@@ -92,8 +92,13 @@ def fmt_pct(participacion):
 
 
 def pct_redondeado(participacion):
-    """Clave de orden: la participacion tal como se muestra (un decimal)."""
+    """La participacion tal como se muestra (porcentaje con un decimal)."""
     return round(participacion * 100, 1)
+
+
+def mismo_valor(a, b):
+    """Empate real: mismo Renewable_Share sin redondear."""
+    return abs(a - b) < 1e-12
 
 
 def region_es(region):
@@ -290,7 +295,8 @@ def doc_kpis(paises, kpis):
 
 
 def ordenar_por_participacion(paises):
-    return sorted(paises, key=lambda p: (-pct_redondeado(p["participacion"]), p["codigo"]))
+    """De mayor a menor por el valor sin redondear; empates por codigo."""
+    return sorted(paises, key=lambda p: (-p["participacion"], p["codigo"]))
 
 
 def doc_ranking(paises):
@@ -305,10 +311,15 @@ def doc_ranking(paises):
             linea = (f"{puesto}. {nombre(p)}: {fmt_pct(p['participacion'])}, "
                      f"{estado_txt(p['estado'])}.")
             empatados = [o for o in orden if o is not p
-                         and pct_redondeado(o["participacion"]) == pct_redondeado(p["participacion"])]
+                         and mismo_valor(o["participacion"], p["participacion"])]
+            redondeo = [o for o in orden if o is not p and o not in empatados
+                        and pct_redondeado(o["participacion"]) == pct_redondeado(p["participacion"])]
             if empatados:
                 hay_empate = True
                 linea += " Empate con " + ", ".join(o["nombre_es"] for o in empatados) + "."
+            if redondeo:
+                linea += (" Igual a " + ", ".join(o["nombre_es"] for o in redondeo)
+                          + " al redondear; se ordena por el valor exacto.")
             lineas.append(linea)
         titulo = (f"Ranking de participación renovable, puestos {inicio + 1} "
                   f"a {fin} (de mayor a menor"

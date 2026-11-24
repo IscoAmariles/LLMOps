@@ -6,8 +6,8 @@
 
 | Campo | Valor |
 |---|---|
-| Repo de origen | `Laboratorio-MLOps-green-data-etl` (solo lectura) |
-| Rama | `feat/airflow-medallion-alignment` (decisión D4; **no** `main`) |
+| Repo de origen | `AndreLopezRendon/Laboratorio-Apache-Airflow-` (el ETL Green Data, solo lectura) |
+| Rama | `feat/airflow-medallion-alignment` (decisión D4). Desde el PR #1 del ETL, `main` tiene el mismo contenido |
 | Archivos | `data/gold/gold_final.csv` y `reports/kpis.csv` |
 | Copia en este repo | `datos/fuente/` (ver `datos/fuente/PROCEDENCIA.md` para el commit exacto) |
 
@@ -59,8 +59,12 @@ Si un control falla, **no se corrige en silencio**: se reporta con la evidencia 
 
 | Fecha | Commit del ETL | Resultado | Observaciones |
 |---|---|---|---|
-| _pendiente_ | _pendiente_ | _pendiente_ | Se completa al copiar el snapshot real a `datos/fuente/` |
+| 2026-11-24 | `aa4c813` (= árbol de `684fba9`) | 10 de 10 en PASS | 20 países: 6 Green, 5 Moderate, 9 Critical. China en 0.10 exacto (Moderate). Empate exacto Argentina y Brasil en 0.09 |
 
 ## Hallazgos reportados
 
-_Ninguno todavía._
+Ningún control falló. Observaciones para el equipo, sin acción requerida en el ETL:
+
+- `Renewable_Share` y `Energy_per_Renewable_Unit` vienen con todos los decimales de punto flotante (p. ej. `0.9090909090909091`). Los documentos los redondean a un decimal en porcentaje.
+- Australia (0.1375) y Francia (0.1385) dan 13.8 % al redondear, igual que Japón (0.0706) y México (0.0714) dan 7.1 %. No son empates: el ranking los ordena por el valor exacto y lo dice en el texto.
+- El nombre del repo ETL en GitHub es `Laboratorio-Apache-Airflow-`, no `Laboratorio-MLOps-green-data-etl` como dicen los planes.

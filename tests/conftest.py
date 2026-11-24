@@ -24,6 +24,11 @@ PAISES = [
      "Lower middle income", 250, 10, "0.04", "Critical"),
     ("Norway", "NOR", "Oslo", "Europe & Central Asia", "High income",
      220, 200, "0.909", "Green"),
+    # Japon y Mexico: 7.1 % al redondear, pero Mexico es mayor sin redondear
+    ("Japan", "JPN", "Tokyo", "East Asia & Pacific", "High income",
+     850, 60, "0.07058823529411765", "Critical"),
+    ("Mexico", "MEX", "Mexico City", "Latin America & Caribbean",
+     "Upper middle income", 420, 30, "0.07142857142857142", "Critical"),
 ]
 
 ALIAS = [
@@ -32,6 +37,8 @@ ALIAS = [
     ("CHN", "China", "China", ""),
     ("EGY", "Egipto", "Egypt, Arab Rep.", "Egypt"),
     ("NOR", "Noruega", "Norway", "Norway"),
+    ("JPN", "Japón", "Japan", "Japan"),
+    ("MEX", "México", "Mexico", "Mexico"),
 ]
 
 

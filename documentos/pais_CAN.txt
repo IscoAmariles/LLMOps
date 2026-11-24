@@ -1,0 +1,5 @@
+Ficha de país: Canadá (Canada), código CAN.
+Capital: Ottawa. Región: North America (América del Norte). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 800. Energía renovable: 200. Participación renovable: 25.0 % (Renewable_Share = 0.250).
+Estado ambiental: Moderate (moderado: participación renovable ≥ 10 % y < 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

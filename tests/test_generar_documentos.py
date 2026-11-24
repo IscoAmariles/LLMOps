@@ -53,6 +53,15 @@ def test_empate_argentina_brasil(repo, args_generador):
     assert "los empates se ordenan por código" in ranking
 
 
+def test_igual_al_redondear_no_es_empate(repo, args_generador):
+    ranking = generar(repo, args_generador)["ranking_participacion_renovable.txt"]
+    linea_mex = next(l for l in ranking.splitlines() if "México (MEX)" in l)
+    linea_jpn = next(l for l in ranking.splitlines() if "Japón (JPN)" in l)
+    assert ranking.index(linea_mex) < ranking.index(linea_jpn)  # MEX 0.0714 > JPN 0.0706
+    assert "Empate" not in linea_mex
+    assert "Igual a Japón al redondear" in linea_mex
+
+
 def test_frontera_exacta_010_es_moderate(repo, args_generador):
     docs = generar(repo, args_generador)
     assert "Estado ambiental: Moderate" in docs["pais_CHN.txt"]
@@ -98,7 +107,7 @@ def test_utf8_y_saltos_lf(repo, args_generador):
 def test_falla_si_falta_un_pais_en_alias(repo, args_generador):
     escribir_csv(repo / "datos" / "alias_paises.csv",
                  ["Country_Code", "nombre_es", "nombre_en", "alias"], ALIAS[:-1])
-    with pytest.raises(AssertionError, match="NOR"):
+    with pytest.raises(AssertionError, match=ALIAS[-1][0]):
         gen.main(args_generador)
 
 
@@ -142,11 +151,12 @@ def test_resumen_regional_usa_promedio_simple(repo, args_generador):
     regiones = generar(repo, args_generador)["resumen_por_region.txt"]
     bloque = next(b for b in regiones.split("\n\n")
                   if "Latin America & Caribbean" in b.split("\n")[0])
-    # ARG y BRA: (0.09 + 0.09) / 2 = 9.0 %
-    assert "promedio simple de los países): 9.0 %" in bloque
-    assert "Cantidad de países: 2." in bloque
+    # ARG, BRA y MEX: (0.09 + 0.09 + 0.0714) / 3 = 8.4 %
+    assert "promedio simple de los países): 8.4 %" in bloque
+    assert "Cantidad de países: 3." in bloque
 
 
 def test_limitaciones_lista_los_paises_del_gold(repo, args_generador):
     texto = generar(repo, args_generador)["limitaciones.txt"]
-    assert "Solo hay 5 países: Argentina, Brasil, China, Egipto y Noruega." in texto
+    assert ("Solo hay 7 países: Argentina, Brasil, China, Egipto, Japón, "
+            "México y Noruega.") in texto

@@ -1,0 +1,5 @@
+Ficha de país: Brasil (Brazil), código BRA.
+Capital: Brasilia. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 500. Energía renovable: 45. Participación renovable: 9.0 % (Renewable_Share = 0.090).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

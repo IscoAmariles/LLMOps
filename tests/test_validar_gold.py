@@ -76,5 +76,5 @@ def test_kpis_en_formato_ancho(repo):
 
 def test_main_devuelve_1_si_falla(repo):
     fuente = str(repo / "datos" / "fuente")
-    assert vg.main(["--fuente", fuente, "--filas-esperadas", "5"]) == 0
+    assert vg.main(["--fuente", fuente, "--filas-esperadas", str(len(PAISES))]) == 0
     assert vg.main(["--fuente", fuente, "--filas-esperadas", "20"]) == 1
