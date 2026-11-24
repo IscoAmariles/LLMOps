@@ -1,0 +1,2 @@
+# Todo se ejecuta en contenedores Linux: forzar finales de linea LF
+* text=auto eol=lf

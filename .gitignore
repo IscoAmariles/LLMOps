@@ -1,0 +1,18 @@
+# Entorno virtual para evaluacion.py
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Artefactos generados por la practica (se regeneran con /indexar y evaluacion.py)
+datos/indice.json
+datos/resultados.json
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
