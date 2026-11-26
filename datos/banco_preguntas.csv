@@ -1,0 +1,31 @@
+id,tipo,pregunta,historia,prioridad
+1,pais,¿Qué participación renovable tiene Noruega?,HU-01,1
+2,pais,¿Cuál es la capital de Egipto?,HU-01,2
+3,pais,What is the environmental status of Colombia?,HU-01,1
+4,pais,¿Cuál es el consumo de energía de EE. UU.?,HU-01,2
+5,pais,¿Cuánta energía renovable tiene Canadá?,HU-01,2
+6,pais,¿En qué estado ambiental está China?,HU-01,2
+7,pais,¿Cuál es el nivel de ingreso de Kenia?,HU-01,2
+8,pais,que particpacion renovable tiene uruguay,HU-01,2
+9,pais,¿A qué región pertenece Japón?,HU-01,2
+10,pais,¿Qué porcentaje de participación renovable tiene Alemania?,HU-01,2
+11,kpi,¿Cuántos países están en estado Green?,HU-02,1
+12,kpi,¿Cuál es el consumo de energía promedio de los países?,HU-02,1
+13,kpi,¿Cuál es el promedio de energía renovable de los países?,HU-02,2
+14,kpi,¿Cuántos países están en estado Critical?,HU-02,2
+15,ranking,¿Qué país tiene la mayor participación renovable?,HU-03,1
+16,ranking,¿Qué país tiene la menor participación renovable?,HU-03,2
+17,ranking,¿Qué país consume más energía?,HU-03,1
+18,ranking,¿Cuáles son los tres países con mayor participación renovable?,HU-03,2
+19,comparacion,¿Cuál es la participación renovable promedio de los países de Europa y Asia Central?,HU-04,1
+20,comparacion,¿Cuántos países de América Latina y el Caribe están en estado Critical?,HU-04,1
+21,comparacion,¿Qué nivel de ingreso tiene la mayor participación renovable promedio y cuál es ese valor?,HU-04,2
+22,comparacion,¿Qué región tiene la mayor participación renovable promedio y cuál es ese valor?,HU-04,2
+23,explicacion,¿Qué condición debe cumplir un país para estar en estado Moderate?,HU-05,1
+24,explicacion,¿Cómo se calcula la participación renovable de un país?,HU-05,1
+25,abstencion,¿Cuál es el consumo de energía de Italia?,HU-06,1
+26,abstencion,¿Cuántas toneladas de CO2 emite Alemania?,HU-06,2
+27,abstencion,¿Cómo cambió la participación renovable de Chile entre 2015 y 2020?,HU-06,2
+28,abstencion,¿Qué porcentaje de la energía de Noruega es solar?,HU-06,1
+29,abstencion,¿En qué unidad está medido el consumo de energía?,HU-06,2
+30,abstencion,¿Cuál es la población de Colombia?,HU-06,2

@@ -1,0 +1,31 @@
+id,tipo,pregunta,respuesta_esperada,terminos_clave,fuente_esperada
+1,pais,¿Qué participación renovable tiene Noruega?,Noruega tiene una participación renovable de 90.9 %.,90.9,pais_NOR.txt
+2,pais,¿Cuál es la capital de Egipto?,La capital de Egipto es Cairo.,Cairo,pais_EGY.txt
+3,pais,What is the environmental status of Colombia?,Colombia está en estado Moderate (moderado).,moder,pais_COL.txt
+4,pais,¿Cuál es el consumo de energía de EE. UU.?,El consumo de energía de Estados Unidos es 1200 (sin unidad documentada).,1200,pais_USA.txt
+5,pais,¿Cuánta energía renovable tiene Canadá?,Canadá tiene 200 de energía renovable (sin unidad documentada).,200,pais_CAN.txt
+6,pais,¿En qué estado ambiental está China?,China está en estado Moderate (moderado) porque está justo en el umbral de 10.0 %.,moder,pais_CHN.txt
+7,pais,¿Cuál es el nivel de ingreso de Kenia?,Kenia es un país de ingreso mediano bajo (Lower middle income).,mediano bajo,pais_KEN.txt
+8,pais,que particpacion renovable tiene uruguay,Uruguay tiene una participación renovable de 75.0 %.,75,pais_URY.txt
+9,pais,¿A qué región pertenece Japón?,Japón pertenece a Asia Oriental y el Pacífico (East Asia & Pacific).,Asia,pais_JPN.txt
+10,pais,¿Qué porcentaje de participación renovable tiene Alemania?,Alemania tiene una participación renovable de 5.4 %.,5.4,pais_DEU.txt
+11,kpi,¿Cuántos países están en estado Green?,Hay 6 países en estado Green.,6,kpis.txt
+12,kpi,¿Cuál es el consumo de energía promedio de los países?,El consumo de energía promedio es 568.75.,568.75,kpis.txt
+13,kpi,¿Cuál es el promedio de energía renovable de los países?,El promedio de energía renovable es 69.7.,69.7,kpis.txt
+14,kpi,¿Cuántos países están en estado Critical?,Hay 9 países en estado Critical.,9,kpis.txt
+15,ranking,¿Qué país tiene la mayor participación renovable?,Noruega con 90.9 %.,Noruega,ranking_participacion_renovable.txt
+16,ranking,¿Qué país tiene la menor participación renovable?,Estados Unidos con 1.7 %.,Estados Unidos,ranking_participacion_renovable.txt
+17,ranking,¿Qué país consume más energía?,China con un consumo de 3000.,China,kpis.txt
+18,ranking,¿Cuáles son los tres países con mayor participación renovable?,Noruega (90.9 %) y luego Uruguay (75.0 %) y Kenia (72.0 %).,Noruega|Uruguay|Kenia,ranking_participacion_renovable.txt
+19,comparacion,¿Cuál es la participación renovable promedio de los países de Europa y Asia Central?,El promedio simple de Europa y Asia Central es 35.4 %.,35.4,resumen_por_region.txt
+20,comparacion,¿Cuántos países de América Latina y el Caribe están en estado Critical?,En América Latina y el Caribe hay 3 países en estado Critical.,3,resumen_por_region.txt
+21,comparacion,¿Qué nivel de ingreso tiene la mayor participación renovable promedio y cuál es ese valor?,El ingreso alto (High income) con un promedio simple de 29.7 %.,29.7,resumen_por_nivel_ingreso.txt
+22,comparacion,¿Qué región tiene la mayor participación renovable promedio y cuál es ese valor?,África subsahariana (Sub-Saharan Africa) con un promedio simple de 37.5 %.,37.5,resumen_por_region.txt
+23,explicacion,¿Qué condición debe cumplir un país para estar en estado Moderate?,Su participación renovable debe ser mayor o igual a 0.10 (10 %) y menor que 0.30 (30 %).,10|30,metodologia.txt
+24,explicacion,¿Cómo se calcula la participación renovable de un país?,Se divide la energía renovable (Renewable_Energy) entre el consumo de energía (Energy_Consumption). Es la participación renovable.,renov|consum,metodologia.txt
+25,abstencion,¿Cuál es el consumo de energía de Italia?,No existe información suficiente en los documentos. Italia no está entre los 20 países del dataset.,información suficiente,
+26,abstencion,¿Cuántas toneladas de CO2 emite Alemania?,No existe información suficiente en los documentos.,información suficiente,
+27,abstencion,¿Cómo cambió la participación renovable de Chile entre 2015 y 2020?,No existe información suficiente en los documentos.,información suficiente,
+28,abstencion,¿Qué porcentaje de la energía de Noruega es solar?,No existe información suficiente en los documentos.,información suficiente,
+29,abstencion,¿En qué unidad está medido el consumo de energía?,No existe información suficiente en los documentos. La unidad no está documentada.,document,
+30,abstencion,¿Cuál es la población de Colombia?,No existe información suficiente en los documentos.,información suficiente,
