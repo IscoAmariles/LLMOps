@@ -6,4 +6,5 @@ Registro cronológico de los planes, decisiones y reportes de ejecución del lab
 
 | N.º | Fecha | Documento | Rol | Tipo | Estado |
 |---|---|---|---|---|---|
-| 01 | 2026-11-24 | [Reporte del Data Engineer: snapshot Gold y corpus de datos verdes (MJGG)](2026-11-24_01_reporte-data-engineer-corpus-green_MJGG.md) | Data Engineer | Reporte | En revisión (PR #2) |
+| 01 | 2026-11-24 | [Reporte del Data Engineer: snapshot Gold y corpus de datos verdes (MJGG)](2026-11-24_01_reporte-data-engineer-corpus-green_MJGG.md) | Data Engineer | Reporte | PR #2 fusionado; sin aceptación del Product Owner |
+| 02 | 2026-11-25 | [Nota de traspaso para el agente del Product Owner (FA)](2026-11-25_02_nota-agente-product-owner_FA.md) | Scrum Master | Traspaso | Vigente |

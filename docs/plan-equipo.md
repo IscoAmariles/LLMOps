@@ -1,6 +1,6 @@
 # Plan de equipo — RAG de «datos verdes»
 
-> Escrito para: el equipo del laboratorio (product owner, data engineer y LLM engineer).
+> Escrito para: el equipo del laboratorio (product owner, data engineer, LLM engineer y scrum master).
 > Léelo completo antes de abrir el plan de tu rol: aquí están el contexto del dataset, los entregables compartidos y las decisiones abiertas.
 
 ## 1. Objetivo
@@ -16,6 +16,28 @@ El resultado no es solo "que responda", sino poder **demostrar con evidencia** c
 | Product Owner | [plan-product-owner.md](plan-product-owner.md) | Alcance, decisiones, banco de preguntas y criterios de aceptación |
 | Data Engineer | [plan-data-engineer.md](plan-data-engineer.md) | Snapshot de datos validado y corpus de documentos listo para indexar |
 | LLM Engineer | [plan-llm-engineer.md](plan-llm-engineer.md) | RAG adaptado, evaluación reproducible y experimentos |
+| Scrum Master | Secciones 2.1 y 2.2 de este documento | Seguimiento de bloqueos y entregas |
+
+### 2.1 Rol del Scrum Master
+
+- **Hace:** facilita las sesiones (arranque, decisiones, demo), hace visibles los bloqueos y su responsable, mantiene el tablero de 2.2 y la [bitácora](bitacora/README.md), y puede preparar **borradores** para desbloquear al equipo.
+- **No hace:** decidir D1–D7, aprobar el alcance ni aceptar entregas en nombre del Product Owner; tampoco asume las entregas técnicas de los otros roles.
+- **Regla del tablero:** **desarrollado ≠ aceptado.** Fusionar un PR no equivale a que el Product Owner haya aceptado la entrega. Un borrador queda marcado como pendiente hasta que su dueño lo apruebe de forma explícita (comentario o revisión en el PR).
+
+### 2.2 Seguimiento de bloqueos y entregas
+
+Estado al **2026-11-25**. Es una foto de esa fecha: actualízala cuando algo cambie.
+
+| Entrega | Responsable | Estado | Bloqueo o siguiente paso |
+|---|---|---|---|
+| Planes por rol | Equipo | Fusionados (PR #1) | Tienen datos desactualizados sobre el repo ETL (ver [nota](bitacora/2026-11-25_02_nota-agente-product-owner_FA.md)) |
+| Snapshot, controles, alias y corpus | Data Engineer | Fusionado (PR #2), sin aceptación del Product Owner | Quedan ajustes de la revisión, comentados en el PR #2 |
+| Banco de preguntas | Product Owner | Borrador | Aprobación del Product Owner |
+| Conjunto de evaluación | Data Engineer | Propuesta | Revisión del Data Engineer y ejecución de `validar_evaluacion.py` |
+| Alcance | Product Owner | Borrador ([alcance.md](alcance.md)) | Aprobación del Product Owner |
+| Decisiones D1–D7 | Product Owner | Sin decidir ([propuesta](propuesta-decisiones.md)) | Decisión y registro en la sección 7 |
+| Prompt, `evaluacion.py` y chunker | LLM Engineer | Pendiente | La línea base necesita el conjunto de evaluación y estos cambios |
+| Prueba de aceptación, demo y cierre | Product Owner | Pendiente | Necesita el asistente funcionando y la línea base |
 
 ## 3. Contexto del dataset
 
