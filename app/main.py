@@ -24,6 +24,28 @@ OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MLFLOW_URL = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
 MODELO = "qwen2.5:1.5b"
 
+# Frase de abstencion (decision D5 del plan de equipo). evaluacion.py y las
+# respuestas esperadas 25 a 30 dependen de que se use literalmente.
+FRASE_ABSTENCION = "No existe información suficiente en los documentos."
+
+INSTRUCCIONES = f"""
+Eres un asistente de datos verdes: respondes preguntas sobre consumo de
+energía, participación renovable y estado ambiental de 20 países.
+
+Reglas:
+1. Responde SOLO con la información del CONTEXTO. No uses conocimiento propio.
+2. Cita entre paréntesis el nombre del documento fuente, por ejemplo (pais_NOR.txt).
+3. Si el contexto no respalda la respuesta, responde exactamente:
+   "{FRASE_ABSTENCION}"
+   Si preguntan por un país que no aparece en el contexto, agrega que ese país
+   no está entre los 20 países del dataset.
+4. Son datos de laboratorio, no estadísticas oficiales, sin unidad ni año
+   documentados. No inventes unidades, años ni conversiones.
+5. Copia las cifras tal como aparecen en el contexto (punto decimal, porcentajes
+   con un decimal).
+6. Responde siempre en español, de forma breve y clara.
+"""
+
 mlflow.set_tracking_uri(MLFLOW_URL)
 
 
@@ -68,9 +90,11 @@ def health():
 
 
 @app.post("/indexar")
-def indexar():
+def indexar(chunker: str | None = None):
+    """Reindexa documentos/. ``chunker``: caracteres o parrafos (por defecto,
+    la variable de entorno CHUNKER o «caracteres»)."""
     try:
-        return indexar_documentos()
+        return indexar_documentos(chunker)
     except Exception as error:
         raise HTTPException(status_code=500, detail=str(error))
 
@@ -82,12 +106,7 @@ def generar_respuesta(pregunta, fragmentos, temperatura):
         for item in fragmentos
     )
 
-    instrucciones = """
-Eres un asistente de TecnoFabrica.
-Responde exclusivamente con la informacion del contexto documental.
-Si el contexto no contiene la respuesta, indica que no existe
-informacion suficiente. Responde en espanol y de forma clara.
-"""
+    instrucciones = INSTRUCCIONES
 
     prompt = f"""
 CONTEXTO:

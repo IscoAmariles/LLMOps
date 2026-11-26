@@ -7,10 +7,16 @@ import numpy as np
 import requests
 import mlflow
 
+from fragmentacion import CHUNKERS, dividir_texto, fragmentar  # noqa: F401
+
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MODELO_EMBEDDING = "nomic-embed-text"
 RUTA_DOCUMENTOS = Path("/documentos")
 RUTA_INDICE = Path("/datos/indice.json")
+# Metadatos del ultimo indice (chunker usado, fragmentos por archivo).
+# evaluacion.py lo lee para registrar el chunker como parametro en MLflow.
+RUTA_META_INDICE = Path("/datos/indice_meta.json")
+CHUNKER_POR_DEFECTO = os.getenv("CHUNKER", "caracteres")
 
 
 # 1. Leer archivos TXT
@@ -24,19 +30,7 @@ def leer_documentos():
     return documentos
 
 
-# 2. Dividir textos con solapamiento
-def dividir_texto(texto, tamano=500, solape=80):
-    if tamano <= solape:
-        raise ValueError("El tamaño debe superar el solape")
-    fragmentos = []
-    inicio = 0
-    while inicio < len(texto):
-        fin = min(inicio + tamano, len(texto))
-        fragmentos.append(texto[inicio:fin])
-        if fin == len(texto):
-            break
-        inicio = fin - solape
-    return fragmentos
+# 2. Dividir textos: ver fragmentacion.py (caracteres o parrafos)
 
 
 # 3. Embeddings mediante Ollama
@@ -51,12 +45,15 @@ def crear_embedding(texto):
 
 
 # 4. Indexar documentos
-def indexar_documentos():
+def indexar_documentos(chunker=None):
+    chunker = chunker or CHUNKER_POR_DEFECTO
+    if chunker not in CHUNKERS:
+        raise ValueError(f"Chunker desconocido: {chunker}. Opciones: {CHUNKERS}")
     documentos = leer_documentos()
     indice = []
 
     for documento in documentos:
-        fragmentos = dividir_texto(documento["texto"])
+        fragmentos = fragmentar(documento["texto"], chunker)
         for numero, fragmento in enumerate(fragmentos):
             indice.append({
                 "fuente": documento["fuente"],
@@ -70,7 +67,20 @@ def indexar_documentos():
         json.dumps(indice, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
-    return {"documentos": len(documentos), "fragmentos": len(indice)}
+    por_archivo = {}
+    for item in indice:
+        por_archivo[item["fuente"]] = por_archivo.get(item["fuente"], 0) + 1
+    resumen = {
+        "documentos": len(documentos),
+        "fragmentos": len(indice),
+        "chunker": chunker,
+    }
+    RUTA_META_INDICE.write_text(
+        json.dumps({**resumen, "fragmentos_por_archivo": por_archivo},
+                   ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    return resumen
 
 
 # 5. Comparar vectores
