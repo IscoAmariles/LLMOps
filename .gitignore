@@ -10,6 +10,8 @@ __pycache__/
 # Artefactos generados por la practica (se regeneran con /indexar y evaluacion.py)
 datos/indice.json
 datos/resultados.json
+datos/resultados_*.json
+datos/indice_meta.json
 
 # Editor / SO
 .vscode/
