@@ -4,7 +4,7 @@
 **Fecha:** 2026-11-25  
 **Elaborado por:** FA, con asistencia de Claude Code  
 **Rol:** Scrum Master  
-**Rama:** `feat/po-preguntas-evaluacion`  
+**Rama:** `feat/po-preguntas-evaluacion` · **PR:** [#3](https://github.com/IscoAmariles/LLMOps/pull/3) (la revisión del Product Owner se deja ahí)  
 **Destinatario:** el agente de IA que asista al Product Owner, y el Product Owner
 
 > **Lo más importante:** se prepararon **borradores** del trabajo del Product Owner para desbloquear al equipo. **Ninguno está aprobado.** Tu tarea es ayudar al Product Owner a revisarlos y decidir, no darlos por hechos.
