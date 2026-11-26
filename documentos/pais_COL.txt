@@ -1,0 +1,5 @@
+Ficha de país: Colombia, código COL.
+Capital: Bogota. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 250. Energía renovable: 35. Participación renovable: 14.0 % (Renewable_Share = 0.140).
+Estado ambiental: Moderate (moderado: participación renovable ≥ 10 % y < 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

@@ -1,0 +1,27 @@
+Ranking de participación renovable, puestos 1 a 5 (de mayor a menor).
+1. Noruega (NOR): 90.9 %, Green (verde).
+2. Uruguay (URY): 75.0 %, Green (verde).
+3. Kenia (KEN): 72.0 %, Green (verde).
+4. Perú (PER): 36.7 %, Green (verde).
+5. Chile (CHL): 33.3 %, Green (verde).
+
+Ranking de participación renovable, puestos 6 a 10 (de mayor a menor).
+6. España (ESP): 31.4 %, Green (verde).
+7. Canadá (CAN): 25.0 %, Moderate (moderado).
+8. Colombia (COL): 14.0 %, Moderate (moderado).
+9. Francia (FRA): 13.8 %, Moderate (moderado). Igual a Australia al redondear; se ordena por el valor exacto.
+10. Australia (AUS): 13.8 %, Moderate (moderado). Igual a Francia al redondear; se ordena por el valor exacto.
+
+Ranking de participación renovable, puestos 11 a 15 (de mayor a menor; los empates se ordenan por código).
+11. China (CHN): 10.0 %, Moderate (moderado).
+12. Argentina (ARG): 9.0 %, Critical (crítico). Empate con Brasil.
+13. Brasil (BRA): 9.0 %, Critical (crítico). Empate con Argentina.
+14. México (MEX): 7.1 %, Critical (crítico). Igual a Japón al redondear; se ordena por el valor exacto.
+15. Japón (JPN): 7.1 %, Critical (crítico). Igual a México al redondear; se ordena por el valor exacto.
+
+Ranking de participación renovable, puestos 16 a 20 (de mayor a menor).
+16. Alemania (DEU): 5.4 %, Critical (crítico).
+17. Sudáfrica (ZAF): 3.1 %, Critical (crítico).
+18. Egipto (EGY): 2.9 %, Critical (crítico).
+19. India (IND): 2.0 %, Critical (crítico).
+20. Estados Unidos (USA): 1.7 %, Critical (crítico).

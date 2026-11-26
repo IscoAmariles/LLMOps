@@ -1,0 +1,5 @@
+Ficha de país: España (Spain), código ESP. También conocido como: Espana.
+Capital: Madrid. Región: Europe & Central Asia (Europa y Asia Central). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 350. Energía renovable: 110. Participación renovable: 31.4 % (Renewable_Share = 0.314).
+Estado ambiental: Green (verde: participación renovable ≥ 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

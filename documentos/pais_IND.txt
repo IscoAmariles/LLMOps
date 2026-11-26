@@ -1,0 +1,5 @@
+Ficha de país: India, código IND.
+Capital: New Delhi. Región: South Asia (Asia meridional). Nivel de ingreso: Lower middle income (ingreso mediano bajo).
+Consumo de energía: 900. Energía renovable: 18. Participación renovable: 2.0 % (Renewable_Share = 0.020).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

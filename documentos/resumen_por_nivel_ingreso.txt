@@ -1,0 +1,14 @@
+Resumen del nivel de ingreso High income (ingreso alto).
+Cantidad de países: 10. Países: Australia (AUS), Canadá (CAN), Chile (CHL), Alemania (DEU), España (ESP), Francia (FRA), Japón (JPN), Noruega (NOR), Uruguay (URY), Estados Unidos (USA).
+Participación renovable promedio (promedio simple de los países): 29.7 %.
+Países por estado: Green (verde): 4, Moderate (moderado): 3, Critical (crítico): 3.
+
+Resumen del nivel de ingreso Lower middle income (ingreso mediano bajo).
+Cantidad de países: 3. Países: Egipto (EGY), India (IND), Kenia (KEN).
+Participación renovable promedio (promedio simple de los países): 25.6 %.
+Países por estado: Green (verde): 1, Moderate (moderado): 0, Critical (crítico): 2.
+
+Resumen del nivel de ingreso Upper middle income (ingreso mediano alto).
+Cantidad de países: 7. Países: Argentina (ARG), Brasil (BRA), China (CHN), Colombia (COL), México (MEX), Perú (PER), Sudáfrica (ZAF).
+Participación renovable promedio (promedio simple de los países): 12.7 %.
+Países por estado: Green (verde): 1, Moderate (moderado): 2, Critical (crítico): 4.

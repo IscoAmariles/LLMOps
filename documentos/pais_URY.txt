@@ -1,0 +1,5 @@
+Ficha de país: Uruguay, código URY.
+Capital: Montevideo. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 40. Energía renovable: 30. Participación renovable: 75.0 % (Renewable_Share = 0.750).
+Estado ambiental: Green (verde: participación renovable ≥ 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

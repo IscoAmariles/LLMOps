@@ -1,0 +1,5 @@
+Ficha de país: Alemania (Germany), código DEU.
+Capital: Berlin. Región: Europe & Central Asia (Europa y Asia Central). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 700. Energía renovable: 38. Participación renovable: 5.4 % (Renewable_Share = 0.054).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

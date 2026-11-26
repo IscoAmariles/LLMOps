@@ -1,0 +1,5 @@
+Ficha de país: China, código CHN. También conocido como: República Popular China.
+Capital: Beijing. Región: East Asia & Pacific (Asia Oriental y el Pacífico). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 3000. Energía renovable: 300. Participación renovable: 10.0 % (Renewable_Share = 0.100).
+Estado ambiental: Moderate (moderado: participación renovable ≥ 10 % y < 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

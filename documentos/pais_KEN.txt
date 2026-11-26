@@ -1,0 +1,5 @@
+Ficha de país: Kenia (Kenya), código KEN.
+Capital: Nairobi. Región: Sub-Saharan Africa (África subsahariana). Nivel de ingreso: Lower middle income (ingreso mediano bajo).
+Consumo de energía: 25. Energía renovable: 18. Participación renovable: 72.0 % (Renewable_Share = 0.720).
+Estado ambiental: Green (verde: participación renovable ≥ 30 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

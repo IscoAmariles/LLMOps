@@ -1,0 +1,23 @@
+KPIs del dataset de datos verdes (20 países).
+- Total de países: 20
+- Consumo de energía promedio: 568.75
+- Energía renovable promedio: 69.7
+- Consumo de energía máximo: 3000
+- Consumo de energía mínimo: 25
+- Cantidad de países en estado Green (verde): 6
+- Cantidad de países en estado Critical (crítico): 9
+Los promedios son promedios simples de los países. Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.
+
+Países con mayor y menor consumo de energía.
+Mayor consumo: China (CHN), con 3000.
+Menor consumo: Kenia (KEN), con 25.
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.
+
+Países en estado Green (verde: participación renovable ≥ 30 %): 6.
+Chile (CHL): 33.3 %, España (ESP): 31.4 %, Kenia (KEN): 72.0 %, Noruega (NOR): 90.9 %, Perú (PER): 36.7 %, Uruguay (URY): 75.0 %.
+
+Países en estado Moderate (moderado: participación renovable ≥ 10 % y < 30 %): 5.
+Australia (AUS): 13.8 %, Canadá (CAN): 25.0 %, China (CHN): 10.0 %, Colombia (COL): 14.0 %, Francia (FRA): 13.8 %.
+
+Países en estado Critical (crítico: participación renovable < 10 %): 9.
+Argentina (ARG): 9.0 %, Brasil (BRA): 9.0 %, Alemania (DEU): 5.4 %, Egipto (EGY): 2.9 %, India (IND): 2.0 %, Japón (JPN): 7.1 %, México (MEX): 7.1 %, Estados Unidos (USA): 1.7 %, Sudáfrica (ZAF): 3.1 %.

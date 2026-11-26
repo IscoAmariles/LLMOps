@@ -1,0 +1,5 @@
+Ficha de país: Egipto (Egypt, Arab Rep.), código EGY. También conocido como: Egypt.
+Capital: Cairo. Región: Middle East, North Africa, Afghanistan & Pakistan. Nivel de ingreso: Lower middle income (ingreso mediano bajo).
+Consumo de energía: 210. Energía renovable: 6. Participación renovable: 2.9 % (Renewable_Share = 0.029).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

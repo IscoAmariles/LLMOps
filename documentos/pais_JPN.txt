@@ -1,0 +1,5 @@
+Ficha de país: Japón (Japan), código JPN. También conocido como: Japon.
+Capital: Tokyo. Región: East Asia & Pacific (Asia Oriental y el Pacífico). Nivel de ingreso: High income (ingreso alto).
+Consumo de energía: 850. Energía renovable: 60. Participación renovable: 7.1 % (Renewable_Share = 0.071).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

@@ -1,0 +1,11 @@
+Metodología: participación renovable (Renewable_Share).
+Renewable_Share = Renewable_Energy / Energy_Consumption. Es un valor entre 0 y 1; en los documentos se muestra como porcentaje con un decimal (por ejemplo 0.909 = 90.9 %).
+
+Metodología: energía por unidad renovable (Energy_per_Renewable_Unit).
+Energy_per_Renewable_Unit = Energy_Consumption / (Renewable_Energy + 1). Se suma 1 al denominador para evitar dividir por cero cuando un país no tiene energía renovable. NO mide emisiones de CO2: es solo una razón entre consumo y renovable. En versiones antiguas del ETL esta columna se llamaba Emission_Efficiency.
+
+Metodología: estado ambiental (Environmental_Status).
+Green (verde) si Renewable_Share ≥ 0.30; Moderate (moderado) si ≥ 0.10 y < 0.30; Critical (crítico) si < 0.10; Unknown (desconocido) si no hay dato. Un valor justo en el umbral cuenta en el estado superior (exactamente 0.10 es Moderate).
+
+Metodología: aclaraciones.
+Los umbrales 0.30 y 0.10 son una regla de este laboratorio, no un estándar internacional. Los resúmenes por región y por nivel de ingreso usan el promedio simple de los países, sin ponderar. Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

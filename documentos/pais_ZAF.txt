@@ -1,0 +1,5 @@
+Ficha de país: Sudáfrica (South Africa), código ZAF. También conocido como: Sudafrica.
+Capital: Pretoria. Región: Sub-Saharan Africa (África subsahariana). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 260. Energía renovable: 8. Participación renovable: 3.1 % (Renewable_Share = 0.031).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.

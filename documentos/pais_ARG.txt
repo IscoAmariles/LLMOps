@@ -1,0 +1,5 @@
+Ficha de país: Argentina, código ARG. También conocido como: República Argentina.
+Capital: Buenos Aires. Región: Latin America & Caribbean (América Latina y el Caribe). Nivel de ingreso: Upper middle income (ingreso mediano alto).
+Consumo de energía: 300. Energía renovable: 27. Participación renovable: 9.0 % (Renewable_Share = 0.090).
+Estado ambiental: Critical (crítico: participación renovable < 10 %).
+Nota: datos de laboratorio, no estadísticas oficiales; sin unidad ni año documentados.
