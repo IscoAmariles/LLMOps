@@ -1,6 +1,8 @@
 # Laboratorio LLMOps: RAG local con Ollama, MLflow, Prometheus y Grafana
 
-Aplicación que responde preguntas sobre las políticas de **TecnoFábrica** (empresa ficticia) usando un LLM local, y que permite observar cada consulta: tokens consumidos, latencias, documentos recuperados y trazas por etapa.
+Asistente que responde **en español** preguntas sobre el dataset **Green Data** (20 países: consumo de energía, participación renovable y estado ambiental) usando un LLM local, y que permite observar cada consulta: tokens consumidos, latencias, documentos recuperados y trazas por etapa. Los datos son de laboratorio, sin unidad ni año documentados; cuando el contexto no respalda la respuesta, el asistente dice «No existe información suficiente en los documentos.».
+
+La organización del trabajo por roles está en [docs/README.md](docs/README.md).
 
 Implementa la guía *LLMOps desde cero en Windows con WSL2 y Docker* de Juan Manuel Núñez Velasco.
 
@@ -36,15 +38,17 @@ Todos los puertos se publican solo en `127.0.0.1`.
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   ├── main.py           # API FastAPI + trazas MLflow + /metrics
-│   ├── rag.py            # lectura, fragmentos, embeddings, similitud coseno, top_k
+│   ├── rag.py            # lectura, embeddings, similitud coseno, top_k
+│   ├── fragmentacion.py  # chunkers: caracteres (original) y parrafos
 │   ├── metricas.py       # Counters e Histograms de Prometheus
-│   └── evaluacion.py     # corre las preguntas de referencia contra la API
-├── documentos/           # base documental (mantenimiento, inventarios, seguridad)
-├── datos/                # índice vectorial y evaluación (indice.json y resultados.json se generan)
-├── docs/                 # documentación de apoyo y plantilla de evidencias
+│   └── evaluacion.py     # evaluación parametrizada: chequeos, hit@k, MLflow
+├── documentos/           # 27 documentos de datos verdes (20 fichas + 7 de apoyo); ejemplo_tecnofabrica/ no se indexa
+├── datos/                # snapshot Gold, alias, conjunto de evaluación; indice*.json y resultados_*.json se generan
+├── scripts/, tests/      # generador y validadores del corpus; pruebas (pytest)
+├── docs/                 # planes por rol, bitácora y evidencias
 ├── mlflow/Dockerfile
 ├── prometheus/prometheus.yml
-└── grafana/provisioning/datasources/datasource.yml
+└── grafana/provisioning/ # datasource y dashboard provisionados
 ```
 
 ## Requisitos
@@ -77,12 +81,15 @@ docker compose exec ollama ollama list
 Indexa los documentos y haz una consulta:
 
 ```bash
-curl -X POST http://localhost:8000/indexar
+curl -X POST http://localhost:8000/indexar                      # documentos: 27
+curl -X POST "http://localhost:8000/indexar?chunker=parrafos"   # alternativa: corta en líneas en blanco
 
 curl -s -X POST http://localhost:8000/preguntar \
   -H "Content-Type: application/json" \
-  -d '{"pregunta": "¿Cada cuánto se realiza el mantenimiento preventivo?", "top_k": 3, "temperatura": 0.2}'
+  -d '{"pregunta": "¿Qué participación renovable tiene Noruega?", "top_k": 3, "temperatura": 0.2}'
 ```
+
+El chunker por defecto se cambia con la variable de entorno `CHUNKER` del servicio `api` (`caracteres` o `parrafos`). Cada indexación escribe `datos/indice_meta.json` con el chunker y los fragmentos por archivo.
 
 En PowerShell usa `curl.exe` (en lugar de `curl`) o la interfaz Swagger en http://localhost:8000/docs.
 
@@ -119,7 +126,7 @@ histogram_quantile(0.95, rate(llm_duracion_segundos_bucket[5m]))
 rate(rag_similitud_sum[5m]) / rate(rag_similitud_count[5m])
 ```
 
-**Dashboard (Grafana).** La fuente de datos Prometheus se provisiona sola. Crea el dashboard `Monitoreo LLMOps: Ollama y RAG` con estos paneles:
+**Dashboard (Grafana).** La fuente de datos Prometheus y el dashboard `Monitoreo LLMOps: Ollama y RAG` (carpeta *LLMOps*) se provisionan solos desde `grafana/provisioning/`. Paneles:
 
 | Panel | Tipo | Expresión |
 |---|---|---|
@@ -129,27 +136,34 @@ rate(rag_similitud_sum[5m]) / rate(rag_similitud_count[5m])
 | Latencia media | Time series | `rate(llm_duracion_segundos_sum[5m]) / rate(llm_duracion_segundos_count[5m])` |
 | Recuperación media | Time series | `rate(rag_recuperacion_segundos_sum[5m]) / rate(rag_recuperacion_segundos_count[5m])` |
 | Similitud promedio | Time series | `rate(rag_similitud_sum[5m]) / rate(rag_similitud_count[5m])` |
+| Latencia p95 | Time series | `histogram_quantile(0.95, rate(llm_duracion_segundos_bucket[5m]))` |
+| Consultas con error | Stat | `sum(llm_consultas_total{estado="error"}) or vector(0)` |
 
 ## Evaluación con preguntas de referencia
 
-`datos/preguntas_evaluacion.csv` tiene 8 preguntas con respuesta esperada; la última (salario del gerente) no tiene respaldo documental a propósito, para detectar respuestas inventadas.
+`datos/preguntas_evaluacion_green.csv` tiene 30 preguntas (`pais`, `kpi`, `ranking`, `comparacion`, `explicacion` y `abstencion`) con respuesta esperada, `terminos_clave` y `fuente_esperada`. Las 6 de `abstencion` no tienen respaldo documental a propósito.
 
-```bash
-sudo apt install python3-venv -y
-python3 -m venv .venv
-source .venv/bin/activate
-pip install requests
-python app/evaluacion.py
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install requests "mlflow>=3.0,<4" pytest
+python app\evaluacion.py --help
+python app\evaluacion.py datos\preguntas_evaluacion_green.csv --top-k 3 --temperatura 0.2 --mlflow --etiqueta linea_base
 ```
 
-Genera `datos/resultados.json`. El script solo recopila evidencia: **no calcula exactitud semántica**. Hay que contrastar cada respuesta con las políticas y clasificarla como correcta, incompleta o inventada.
+Genera `datos/resultados_<fecha>.json` e imprime un resumen por tipo. Chequeos automáticos de primera pasada: `acierto_terminos` (todos los términos clave en la respuesta) y `hit_fuente` / `rango_fuente` (posición de la fuente esperada, para hit@1 y hit@3). **La clasificación final (correcta, incompleta, inventada) es manual.** Con `--mlflow` la corrida queda como run del experimento `Evaluacion_RAG_Green`, separado de las trazas del servicio. Otros parámetros: `--repeticiones`, `--ids`, `--tipos`, `--salida`.
 
-## Experimentos sugeridos
+Pruebas: `python -m pytest`.
 
-- **A. Tamaño del contexto:** `top_k` = 1, 3 y 5; compara tokens de entrada, duración y relevancia.
-- **B. Temperatura:** 0, 0.5 y 1, repitiendo cada pregunta varias veces.
-- **C. Preguntas sin evidencia:** salario del gerente, facturación, número de empleados.
-- **D. Rendimiento:** 1, 5 y 10 consultas secuenciales, controlando si el modelo ya estaba cargado en memoria.
+## Experimentos
+
+Resultados y conclusiones en [docs/evidencias.md](docs/evidencias.md).
+
+- **A. Tamaño del contexto:** `top_k` = 1, 3 y 5; tokens de entrada, duración, acierto y hit@k por tipo.
+- **B. Temperatura:** 0, 0.5 y 1, repitiendo cada pregunta 3 veces (`--repeticiones 3`).
+- **C. Preguntas sin evidencia:** las 6 de `abstencion` (país fuera del dataset, CO₂, años, población…).
+- **D. Rendimiento:** 1, 5 y 10 consultas secuenciales, en frío y en caliente.
+- **E. Fragmentación:** `chunker=caracteres` frente a `chunker=parrafos`.
 
 ## Solución de problemas
 
