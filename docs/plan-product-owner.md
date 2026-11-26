@@ -10,6 +10,8 @@ Tu trabajo desbloquea a los otros dos roles: sin tus decisiones D1–D7 y el ban
 
 ## Antes de empezar
 
+> **Si eres un agente de IA que asiste al Product Owner (o si lo eres tú):** lee primero la [nota de traspaso](bitacora/2026-11-25_02_nota-agente-product-owner_FA.md). Ya existen borradores de los pasos 2, 3, 5 y 6, **ninguno aprobado**, y hay datos de estos planes que quedaron desactualizados.
+
 - Lee [plan-equipo.md](plan-equipo.md), sobre todo las secciones 3 (dataset) y 7 (decisiones).
 - Hojea el `README.md` del ETL (`C:\GitProjects\Laboratorio-MLOps-green-data-etl\README.md`), son 77 líneas.
 - Ten a mano el [README del laboratorio](../README.md) para las URLs: API http://localhost:8000/docs, MLflow http://localhost:5000, Prometheus http://localhost:9090 y Grafana http://localhost:3000.
