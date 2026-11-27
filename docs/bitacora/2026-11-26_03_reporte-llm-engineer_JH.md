@@ -4,7 +4,7 @@
 **Fecha:** 2026-11-26  
 **Elaborado por:** JH  
 **Rol:** LLM Engineer  
-**Rama:** `feat/llm-evaluacion` · **PR:** pendiente  
+**Rama:** `feat/llm-evaluacion` · **PR:** [#4](https://github.com/IscoAmariles/LLMOps/pull/4)  
 **Plan ejecutado:** [plan-llm-engineer.md](../plan-llm-engineer.md), pasos 1 a 10  
 **Resultados detallados:** [evidencias.md](../evidencias.md)
 
