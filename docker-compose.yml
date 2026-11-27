@@ -6,6 +6,9 @@ services:
       - "127.0.0.1:11434:11434"
     volumes:
       - ollama_data:/root/.ollama
+    environment:
+      # Una consulta a la vez: reserva menos memoria de contexto (equipos de 8 GB).
+      OLLAMA_NUM_PARALLEL: "1"
     restart: unless-stopped
 
   mlflow:
@@ -24,6 +27,13 @@ services:
       - /mlflow-data/artifacts
       - --allowed-hosts
       - mlflow:5000,localhost:5000,127.0.0.1:5000
+      # Un solo worker: suficiente para el laboratorio y ahorra RAM.
+      - --workers
+      - "1"
+    environment:
+      # MLflow 3 arranca ~8 procesos de trabajos en segundo plano (~1,2 GB)
+      # que este laboratorio no usa; sin esto Ollama no cabe en 7 GB de RAM.
+      MLFLOW_SERVER_ENABLE_JOB_EXECUTION: "false"
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
