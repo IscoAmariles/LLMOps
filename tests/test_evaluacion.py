@@ -29,6 +29,17 @@ def test_rango_fuente():
 def test_se_abstuvo():
     assert ev.se_abstuvo("No existe información suficiente en los documentos.")
     assert not ev.se_abstuvo("Noruega tiene 90.9 %.")
+    assert ev.se_abstuvo(
+        "El país consultado no se encuentra incluido en el dataset utilizado por este asistente."
+    )
+
+
+def test_acierto_abstencion_acepta_ambas_frases_d5():
+    frase_pais = "El país consultado no se encuentra incluido en el dataset utilizado por este asistente."
+    assert ev.acierto("abstencion", frase_pais, "información suficiente")
+    assert not ev.acierto("abstencion", "790", "información suficiente")
+    assert ev.acierto("pais", "Noruega 90.9 %", "90.9")
+    assert not ev.acierto("pais", frase_pais, "90.9")
 
 
 def test_percentil():

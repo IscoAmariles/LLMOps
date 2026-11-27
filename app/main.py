@@ -24,10 +24,21 @@ OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MLFLOW_URL = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
 MODELO = "qwen2.5:1.5b"
 
-# Frase de abstencion (decision D5 del plan de equipo). evaluacion.py y las
-# respuestas esperadas 25 a 30 dependen de que se use literalmente.
+# Frases aprobadas por el Product Owner el 23/11/2026
+# (docs/03_Respuesta_Product_Owner_Aprobaciones.md, D3 y D5). evaluacion.py
+# reconoce las dos frases de abstencion: deben usarse literalmente.
 FRASE_ABSTENCION = "No existe información suficiente en los documentos."
+FRASE_PAIS_FUERA = (
+    "El país consultado no se encuentra incluido en el dataset utilizado por este asistente."
+)
+NOTA_DATOS = (
+    "Los datos utilizados corresponden a información de laboratorio y no poseen "
+    "unidad de medida ni año documentado."
+)
 
+# Prompt corto a proposito: con qwen2.5:1.5b, agregar reglas (lista de paises,
+# nota D3, promedios D6) empeoro la evaluacion (run prompt_d7 en MLflow).
+# La nota D3 se agrega en codigo (anotar_respuesta), no se le pide al modelo.
 INSTRUCCIONES = f"""
 Eres un asistente de datos verdes: respondes preguntas sobre consumo de
 energía, participación renovable y estado ambiental de 20 países.
@@ -37,14 +48,23 @@ Reglas:
 2. Cita entre paréntesis el nombre del documento fuente, por ejemplo (pais_NOR.txt).
 3. Si el contexto no respalda la respuesta, responde exactamente:
    "{FRASE_ABSTENCION}"
-   Si preguntan por un país que no aparece en el contexto, agrega que ese país
-   no está entre los 20 países del dataset.
-4. Son datos de laboratorio, no estadísticas oficiales, sin unidad ni año
-   documentados. No inventes unidades, años ni conversiones.
+   Si preguntan por un país que no aparece en el contexto, responde exactamente:
+   "{FRASE_PAIS_FUERA}"
+4. No inventes unidades, años ni conversiones.
 5. Copia las cifras tal como aparecen en el contexto (punto decimal, porcentajes
    con un decimal).
 6. Responde siempre en español, de forma breve y clara.
 """
+
+
+def anotar_respuesta(texto):
+    """D3: toda respuesta con cifras termina con la nota aprobada. Se hace en
+    codigo porque el modelo pequeno no la agrega de forma fiable."""
+    texto = (texto or "").strip()
+    if any(c.isdigit() for c in texto) and NOTA_DATOS not in texto:
+        return f"{texto}\n\n{NOTA_DATOS}"
+    return texto
+
 
 mlflow.set_tracking_uri(MLFLOW_URL)
 
@@ -133,7 +153,7 @@ RESPUESTA:
     datos = respuesta.json()
 
     return {
-        "respuesta": datos["response"],
+        "respuesta": anotar_respuesta(datos["response"]),
         "tokens_entrada": datos.get("prompt_eval_count", 0),
         "tokens_salida": datos.get("eval_count", 0),
         "duracion_ollama": datos.get("total_duration", 0) / 1e9,

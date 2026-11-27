@@ -2,7 +2,9 @@
 
 Resultados del RAG de datos verdes (Green Data, 20 países) medidos el 2026-11-26 por el LLM Engineer (JH). Cada conclusión se apoya en una corrida registrada: los JSON de resultados se generan en `datos/resultados_*.json` (no versionados) y cada corrida de evaluación es un *run* del experimento `Evaluacion_RAG_Green` en MLflow, con el JSON como artefacto.
 
-**Configuración común:** `qwen2.5:1.5b` y `nomic-embed-text` en Ollama (CPU), corpus de 27 documentos (commit del ETL `aa4c813`), conjunto `datos/preguntas_evaluacion_green.csv` de 30 preguntas (propuesta del PR #3; las metas D7 siguen sin aprobación del PO). Equipo: Windows 11, **6,9 GB de RAM**, Docker con 3,5 GB y 8 CPU.
+**Configuración común:** `qwen2.5:1.5b` y `nomic-embed-text` en Ollama (CPU), corpus de 27 documentos (commit del ETL `aa4c813`), conjunto `datos/preguntas_evaluacion_green.csv` de 30 preguntas (banco aprobado por el PO). Equipo: Windows 11, **6,9 GB de RAM**, Docker con 3,5 GB y 8 CPU.
+
+Las decisiones D1–D7 quedaron aprobadas por el PO el 23/11/2026 ([03_Respuesta_Product_Owner_Aprobaciones.md](03_Respuesta_Product_Owner_Aprobaciones.md)) cuando la línea base y los experimentos A–E ya estaban corridos. Su efecto se mide aparte, en *Prompt con las decisiones aprobadas*, y la comparación final usa las metas D7 oficiales.
 
 ## Checklist
 
@@ -78,7 +80,7 @@ Run MLflow `linea_base`. Clasificación manual de cada respuesta frente a la esp
 | 29 | abstencion | Unidad del consumo: «unidades de energía consumida» | — | I |
 | 30 | abstencion | Población de Colombia: frase D5 | — | C |
 
-### Frente a las metas propuestas (D7, pendientes de aprobación del PO)
+### Frente a las metas provisionales de `propuesta-decisiones.md` (reemplazadas después; ver *Metas D7 oficiales*)
 
 | Meta | Obtenido | ¿Cumple? |
 |---|---|---|
@@ -158,17 +160,44 @@ Arrancar en frío cuesta casi 3 minutos (carga del modelo con RAM escasa). Despu
 
 Con párrafos, la fuente correcta entra más a menudo en el top 3 (arregla Noruega, Canadá, la comparación 20 y la explicación 23) y el contexto es más corto y rápido. Pero introduce regresiones (Kenia «Ingleses», Egipto como mayor participación renovable, serie inventada de Chile) y el acierto global queda igual. **Se mantiene `caracteres` por defecto** hasta tener más evidencia; `parrafos` queda disponible (`?chunker=parrafos` o `CHUNKER=parrafos`).
 
+## Prompt con las decisiones aprobadas (D3, D5, D6)
+
+El PO fijó dos frases de abstención (D5: «No existe información suficiente en los documentos.» y, para países fuera de los 20, «El país consultado no se encuentra incluido en el dataset utilizado por este asistente.»), una nota obligatoria sobre unidad y año (D3) y aclarar el promedio simple (D6). Se probaron dos versiones, con `top_k=3` y temperatura 0.2 como la línea base:
+
+| Versión (run MLflow) | Cambio | Correctas (manual) | Acierto automático | Lo más relevante |
+|---|---|---|---|---|
+| `linea_base` | Prompt corto original | 16/30 | 0,567 | — |
+| `prompt_d7` | Prompt largo: lista de los 20 países, ambas frases D5, nota D3 y regla D6 pedidas al modelo | 14/30 | 0,500 | Inventa el consumo de Italia («2500»); la lista de países se filtra a los rankings (España y Francia con 35,4 %); la nota D3 casi nunca aparece |
+| `prompt_d7_v2` | Prompt corto con ambas frases D5; la nota D3 se **agrega en código** a toda respuesta con cifras | 15/30 (1 timeout) | 0,517 | Nota D3 en el 100 % de las respuestas con cifras; Italia vuelve a abstenerse; nuevo falso positivo: Uruguay «no está incluido en el dataset» |
+
+El run `prompt_d7_v2_INVALIDA_api_caida` de MLflow es un intento fallido (error de sintaxis, la API no arrancó) y no cuenta.
+
+**Se adopta `prompt_d7_v2`:** cumple las frases aprobadas y la nota D3 de forma determinista, con una calidad equivalente a la línea base (la diferencia de una pregunta está dentro del ruido: hubo un timeout). Con este modelo, **más instrucciones en el prompt empeoran el resultado**. La regla D6 (decir «promedio simple») no se pide al modelo: los documentos de resumen ya lo indican, y pedirlo en el prompt formó parte de la versión que empeoró. Queda como pendiente.
+
+## Metas D7 oficiales
+
+| Métrica (D7 aprobada) | Objetivo | Obtenido (`prompt_d7_v2`) | ¿Cumple? |
+|---|---|---|---|
+| Precisión de respuestas | ≥ 85 % | 50 % (15/30, manual) | No |
+| Recuperación correcta de fuentes | ≥ 90 % | 65 % (hit@3) | No |
+| Abstenciones correctas | 100 % | 67 % (4/6) | No |
+| Alucinaciones verificadas | 0 | ~10 respuestas con cifras o países incorrectos | No |
+| Registro en MLflow | 100 % | 100 % (trazas de todas las consultas y un run por corrida) | Sí |
+| Métricas Prometheus | 100 % | 100 % (6 métricas, target UP) | Sí |
+| Dashboard Grafana operativo | 100 % | 8/8 paneles con datos | Sí (capturas pendientes) |
+
 ## Conclusiones
 
-1. **El sistema no cumple las metas D7 propuestas** con `qwen2.5:1.5b` en esta configuración: 16/30 correctas en la línea base. La única meta cumplida es 0 errores técnicos.
+1. **El sistema no cumple las metas de calidad de D7** con `qwen2.5:1.5b` en esta configuración: ~50 % de precisión frente a ≥ 85 %. Las metas de observabilidad (MLflow, Prometheus, Grafana) sí se cumplen.
 2. **El cuello de botella de calidad es la recuperación, no el modelo.** Los documentos de apoyo genéricos (`metodologia`, `glosario`, resúmenes) ganan en similitud a las fichas y al ranking. Subir `top_k` (A) o cambiar el chunker (E) mejoran hit@3, pero no lo resuelven y suben el riesgo de que el modelo copie una cifra equivocada.
 3. **Temperatura 0** para producción del laboratorio: misma exactitud y abstención más estable (B).
 4. **El cuello de botella de latencia es la generación con poca RAM:** frío ~3 min, caliente estable ~4 s. Con 7 GB el stack solo funciona con el ajuste de MLflow descrito arriba.
 5. Una similitud alta (0,70–0,75 en los documentos genéricos) no garantiza que el fragmento sirva: la calidad hay que medirla con el conjunto de evaluación, como aquí.
+6. **Con un modelo de 1,5B, las reglas obligatorias se cumplen mejor en código que en el prompt** (nota D3). Por la misma vía podría resolverse la frase de país fuera del dataset: detectar el país con `alias_paises.csv` antes de llamar al modelo.
 
 ### Siguientes pasos propuestos (no aplicados)
 
 - **Recuperación:** dar prioridad a la ficha cuando la pregunta nombra un país (detectar el país con `alias_paises.csv` y filtrar o reordenar), o recuperación híbrida (palabra clave + vector). Es el cambio con más impacto esperado.
 - **Corpus (DE):** revisar si `glosario.txt` y `metodologia.txt` deben repetir tanto los términos de las preguntas, o separarlos del índice principal.
 - **Modelo:** repetir la línea base con un modelo mayor en un equipo con ≥ 16 GB (experimento F pendiente).
-- **Metas (PO):** decidir D7 con estos resultados a la vista.
+- **Metas (PO):** las metas D7 aprobadas están lejos de lo medido; conviene revisarlas con estos resultados a la vista o aceptar que exigen otro modelo u otra recuperación.

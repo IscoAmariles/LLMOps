@@ -33,7 +33,10 @@ API_URL = "http://localhost:8000/preguntar"
 RUTA_CSV = Path("datos/preguntas_evaluacion_green.csv")
 RUTA_META_INDICE = Path("datos/indice_meta.json")
 RUTA_PROCEDENCIA = Path("datos/fuente/PROCEDENCIA.md")
-FRASE_ABSTENCION = "información suficiente"
+# Fragmentos de las dos frases D5 aprobadas por el PO (23/11/2026):
+# "No existe información suficiente en los documentos." y
+# "El país consultado no se encuentra incluido en el dataset utilizado por este asistente."
+FRASES_ABSTENCION = ("información suficiente", "no se encuentra incluido en el dataset")
 EXPERIMENTO_MLFLOW = "Evaluacion_RAG_Green"
 
 
@@ -70,7 +73,16 @@ def rango_fuente(fuentes, fuente_esperada):
 
 
 def se_abstuvo(respuesta):
-    return FRASE_ABSTENCION in (respuesta or "").lower()
+    texto = (respuesta or "").lower()
+    return any(frase in texto for frase in FRASES_ABSTENCION)
+
+
+def acierto(tipo, respuesta, terminos_clave):
+    """En `abstencion` acierta quien usa cualquiera de las dos frases D5;
+    en el resto, la respuesta debe contener todos los terminos clave."""
+    if tipo == "abstencion":
+        return se_abstuvo(respuesta)
+    return acierto_terminos(respuesta, terminos_clave)
 
 
 def percentil(valores, p):
@@ -183,7 +195,7 @@ def evaluar_fila(fila, top_k, temperatura, api_url, repeticion=1):
         "fuentes": fuentes,
         "rango_fuente": rango,
         "hit_fuente": rango is not None if base["fuente_esperada"] else None,
-        "acierto_terminos": acierto_terminos(datos["respuesta"], base["terminos_clave"]),
+        "acierto_terminos": acierto(base["tipo"], datos["respuesta"], base["terminos_clave"]),
         "se_abstuvo": se_abstuvo(datos["respuesta"]),
         "tokens_entrada": datos["tokens_entrada"],
         "tokens_salida": datos["tokens_salida"],
