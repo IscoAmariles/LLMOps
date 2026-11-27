@@ -54,7 +54,7 @@ Todos los puertos se publican solo en `127.0.0.1`.
 ## Requisitos
 
 - Docker Desktop (con integración WSL2 si trabajas desde Ubuntu).
-- ~16 GB de RAM recomendados; con menos funciona más lento.
+- ~16 GB de RAM recomendados. Medido en un equipo de 7 GB: funciona con el ajuste de MLflow del compose (un worker, sin trabajos en segundo plano), sin otros contenedores y con el navegador cerrado; la primera consulta tarda ~3 min y en caliente ~4 s. Detalle en [docs/evidencias.md](docs/evidencias.md).
 - Internet para la primera descarga de imágenes y modelos.
 
 > La guía recomienda trabajar dentro del sistema de archivos Linux de WSL (`~/proyectos`) y no desde `/mnt/c/`. Si clonas este repo en Windows, `docker compose` funciona igual desde PowerShell con Docker Desktop, pero los bind mounts son más lentos.
